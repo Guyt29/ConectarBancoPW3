@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ConectarBanco.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Cadastrar">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th scope="col"> @Html.DisplayNameFor(model => model.IdUsu)</th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.nomeUsu)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Cargo)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.DataNasc)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CEP)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Estado)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Cidade)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Bairro)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Logradouro)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Complemento)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Numero)</th>
+
+
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Usuario usuario in Model)
+            {
+                <tr>
+                    <td> @usuario.IdUsu</td>
+                    <td> @usuario.nomeUsu</td>
+                    <td> @usuario.Cargo</td>
+                    <td> @usuario.DataNasc.ToString("dd/MM/yyyy")</td>
+                    <td> @usuario.CEP</td>
+                    <td> @usuario.Estado</td>
+                    <td> @usuario.Cidade</td>
+                    <td> @usuario.Bairro</td>
+                    <td> @usuario.Logradouro</td>
+                    <td> @usuario.Complemento</td>
+                    <td> @usuario.Numero</td>
+
+
+                    <td>
+                        <button type="button" class="btn btn-warning">
+                            @Html.ActionLink("Editar", "AtualizarUsuario", new {id = usuario.IdUsu})
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            @Html.ActionLink("Detalhes", "DetalhesUsuario", new { id = usuario.IdUsu })
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Excluir", "ExcluirUsuario", new { id = usuario.IdUsu },
+                                                                          new {onclick = "return confirm('Deseja realmente desativar?');"})
+                        </button>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
